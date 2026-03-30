@@ -19,7 +19,7 @@ import java.util.List;
 public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer restaurantId;
+    private Integer id;
     private String name;
     @OneToOne
     private User owner;
