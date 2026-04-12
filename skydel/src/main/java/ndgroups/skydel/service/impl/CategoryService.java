@@ -43,4 +43,17 @@ public class CategoryService implements ICategoryService {
         }
         return category.get();
     }
+
+    @Override
+    public void deleteCategory(Integer categoryId) throws Exception {
+       Category category  = findCategoryId(categoryId);
+       categoryRepository.delete(category);
+    }
+
+    @Override
+    public Category updateCategory(String name, Integer categoryId) throws Exception {
+        Category category = findCategoryId(categoryId);
+        category.setName(name);
+        return categoryRepository.save(category);
+    }
 }

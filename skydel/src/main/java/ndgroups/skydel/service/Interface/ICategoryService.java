@@ -8,5 +8,7 @@ public interface ICategoryService {
     public Category createcategory(String name, Integer userId) throws Exception;
     public List<Category> findCategoryByRestaurantId(Integer id) throws Exception;
     public Category findCategoryId(Integer id) throws Exception;
+    public void deleteCategory(Integer categoryId) throws Exception;
+    public Category updateCategory(String name, Integer categoryId) throws Exception;
 
 }

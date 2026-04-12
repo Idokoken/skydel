@@ -1,10 +1,9 @@
 package ndgroups.skydel.repositoy;
 
-import ndgroups.skydel.model.Cart;
+import ndgroups.skydel.model.OrderItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CartRepository  extends JpaRepository<Cart, Integer> {
-    public Cart findByUserId(Integer userId);
+public interface OrderItemRepository extends JpaRepository<OrderItem, Integer> {
 }
