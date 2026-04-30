@@ -27,12 +27,14 @@ public class Food {
     @Column(length = 1000)
     @ElementCollection
     private List<String>images;
+//    @OneToMany(mappedBy = "food", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<FoodImage> images = new ArrayList<>();
     private boolean  isAvailable;
     @ManyToOne
     private Restaurant restaurant;
     private boolean isVegetarian;
     private boolean isSeasonal;
-    @ManyToMany
+    @OneToMany(mappedBy = "food", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<IngredientsItem>ingredients = new ArrayList<>();
     private Date CreationDate;
 }

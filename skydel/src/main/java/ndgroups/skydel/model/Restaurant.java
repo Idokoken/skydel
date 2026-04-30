@@ -36,9 +36,14 @@ public class Restaurant {
     @ElementCollection
     @Column(length = 1000)
     private List<String> images;
+//    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<FoodImage> images = new ArrayList<>();
     private LocalDateTime registration;
     private boolean isOpen;
     @JsonIgnore
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Food>food = new ArrayList<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<IngredientsItem>ingredientsItems = new ArrayList<>();
 }

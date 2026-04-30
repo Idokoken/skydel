@@ -15,13 +15,19 @@ import lombok.Setter;
 public class IngredientsItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer ingredientsItemId;
     private String name;
     @ManyToOne
+    @JoinColumn(name = "ingredientCategory_id")
     private IngredientCategory category;
     @JsonIgnore
     @ManyToOne
+    @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
     private boolean isInStock = true;
+
+    @ManyToOne
+//    @JoinColumn(name = "food_id")
+    private Food food;
 
 }

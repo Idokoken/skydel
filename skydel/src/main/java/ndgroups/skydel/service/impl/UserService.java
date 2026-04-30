@@ -7,6 +7,8 @@ import ndgroups.skydel.service.Interface.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService implements IUserService {
     @Autowired
@@ -31,5 +33,14 @@ public class UserService implements IUserService {
             throw new Exception("user not found");
         }
         return user;
+    }
+
+    @Override
+    public User getUserByUserId(Integer id) throws Exception{
+        Optional<User> user = userRepository.findById(id);
+        if(user.isEmpty()){
+            throw new Exception("user not found with id " + id);
+        }
+        return user.get();
     }
 }
