@@ -1,6 +1,7 @@
 package ndgroups.skydel.request;
 
 import lombok.Data;
+import ndgroups.skydel.dto.ImageDto;
 import ndgroups.skydel.model.*;
 
 import java.time.LocalDateTime;
@@ -15,7 +16,7 @@ public class CreateRestaurantRequest {
     private String cuisineType;
     private Address address;
     private ContactInformation contactInformation;
-    private List<String> images;
+    private List<Image> images;
     private String openingHour;
     private String closingHour;
     private LocalDateTime registration;

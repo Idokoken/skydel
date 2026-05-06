@@ -1,7 +1,9 @@
 package ndgroups.skydel.service.impl;
 
+import ndgroups.skydel.dto.ImageDto;
 import ndgroups.skydel.dto.RestaurantDto;
 import ndgroups.skydel.model.Address;
+import ndgroups.skydel.model.Image;
 import ndgroups.skydel.model.Restaurant;
 import ndgroups.skydel.model.User;
 import ndgroups.skydel.repositoy.AddressRepository;
@@ -114,7 +116,14 @@ public class RestaurantService implements IRestaurantService {
         dto.setRestaurantId(restaurant.getId());
         dto.setDescription(restaurant.getDescription());
         dto.setTitle(restaurant.getName());
-        dto.setImages(restaurant.getImages());
+
+        // 🔥 Map Images
+        List<ImageDto> imageDtos = restaurant.getImages()
+                .stream()
+                .map(this::mapImageToDto)
+                .toList();
+
+        dto.setImages(imageDtos);
 
         boolean isFavourite = false;
         List<RestaurantDto>favourites = user.getFavourites();
@@ -140,5 +149,12 @@ public class RestaurantService implements IRestaurantService {
         Restaurant restaurant = findRestaurantById(id);
         restaurant.setOpen(!restaurant.isOpen());
         return restaurantRepository.save(restaurant);
+    }
+
+    private ImageDto mapImageToDto(Image image) {
+        ImageDto dto = new ImageDto();
+        dto.setImageId(image.getId());
+        dto.setImageUrl(image.getImageUrl());
+        return dto;
     }
 }

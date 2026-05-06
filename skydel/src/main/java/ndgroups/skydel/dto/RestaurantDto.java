@@ -11,7 +11,7 @@ import java.util.List;
 public class RestaurantDto {
     private Integer restaurantId;
     private String title;
-    @Column(length = 1000)
-    private List<String> images;
+//    @Column(length = 1000)
+    private List<ImageDto> images;
     private String description;
 }

@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import './App.css'
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
@@ -15,6 +13,8 @@ import ProductsPage from "./pages/ProductsPage";
 import SingleProduct from "./pages/SingleProduct";
 import Orders from "./pages/Order"   
 import PlaceOrder from "./components/PlaceOrder"
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import { darkTheme } from './Theme/DarkTheme';
 
 // import ScrollToTop from './ScrollToTop';
 
@@ -22,7 +22,8 @@ function App() {
 
 
   return (
-    <>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
      <Router>
         {/* <ScrollToTop /> */}
         <Routes>
@@ -44,7 +45,7 @@ function App() {
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Router>
-    </>
+    </ThemeProvider>
   )
 }
 

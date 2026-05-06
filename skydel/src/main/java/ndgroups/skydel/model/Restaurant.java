@@ -33,11 +33,11 @@ public class Restaurant {
     private String closingHour;
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order>orders = new ArrayList<>();
-    @ElementCollection
-    @Column(length = 1000)
-    private List<String> images;
-//    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<FoodImage> images = new ArrayList<>();
+//    @ElementCollection
+//    @Column(length = 1000)
+//    private List<String> images;
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Image> images;
     private LocalDateTime registration;
     private boolean isOpen;
     @JsonIgnore

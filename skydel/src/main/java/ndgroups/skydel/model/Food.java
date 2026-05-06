@@ -24,11 +24,11 @@ public class Food {
     private Long price;
     @ManyToOne
     private Category foodCategory;
-    @Column(length = 1000)
-    @ElementCollection
-    private List<String>images;
-//    @OneToMany(mappedBy = "food", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<FoodImage> images = new ArrayList<>();
+//    @Column(length = 1000)
+//    @ElementCollection
+//    private List<String>images;
+    @OneToMany(mappedBy = "food", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Image> images;
     private boolean  isAvailable;
     @ManyToOne
     private Restaurant restaurant;
