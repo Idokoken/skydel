@@ -1,6 +1,7 @@
 package ndgroups.skydel.request;
 
 import lombok.Data;
+import ndgroups.skydel.dto.ImageDto;
 import ndgroups.skydel.model.*;
 
 import java.time.LocalDateTime;

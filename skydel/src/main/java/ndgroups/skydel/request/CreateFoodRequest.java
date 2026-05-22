@@ -1,6 +1,7 @@
 package ndgroups.skydel.request;
 
 import lombok.Data;
+import ndgroups.skydel.dto.ImageDto;
 import ndgroups.skydel.model.Category;
 import ndgroups.skydel.model.IngredientsItem;
 
@@ -12,7 +13,7 @@ public class CreateFoodRequest {
     private String description;
     private Long price;
     private Category category;
-    private List<String> images;
+    private List<ImageDto> images;
     private Integer restaurantId;
     private boolean vegetarian;
     private boolean seasonal;

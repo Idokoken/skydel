@@ -1,6 +1,7 @@
 package ndgroups.skydel.controller;
 
 import ndgroups.skydel.config.JwtProvider;
+import ndgroups.skydel.emailService.EmailService;
 import ndgroups.skydel.model.Cart;
 import ndgroups.skydel.model.USER_ROLE;
 import ndgroups.skydel.model.User;
@@ -39,6 +40,8 @@ public class AuthController {
     private CustomUserDetailsService customUserDetailsService;
     @Autowired
     private CartRepository cartRepository;
+    @Autowired
+    private EmailService emailService;
 
 
     @PostMapping("/signup")
@@ -58,6 +61,12 @@ public class AuthController {
         Cart cart = new Cart();
         cart.setUser(saveUser);
         cartRepository.save(cart);
+
+        // Send Notification email after successful account creation
+        emailService.sendAccountCreationNotificationEmail(
+                saveUser.getEmail(),
+                user.getFullName()
+        );
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(user.getEmail(),
                 user.getPassword());

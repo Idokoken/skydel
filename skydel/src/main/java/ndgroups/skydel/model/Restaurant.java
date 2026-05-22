@@ -35,10 +35,32 @@ public class Restaurant {
     private List<Order>orders = new ArrayList<>();
     @ElementCollection
     @Column(length = 1000)
+    @CollectionTable(
+            name = "restaurant_images",
+            joinColumns = @JoinColumn(name = "restaurant_id")
+    )
+    @OrderColumn(name = "position")
     private List<String> images;
+//    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Image> images;
     private LocalDateTime registration;
     private boolean isOpen;
     @JsonIgnore
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Food>food = new ArrayList<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<IngredientsItem>ingredientsItems = new ArrayList<>();
+
+//    @JsonIgnore
+//    @ManyToMany
+////    @JoinColumn(name = "user_id")
+//    private User user;
+
+    public Restaurant(Integer id, String name, String description, List<String>images) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.images = images;
+    }
 }

@@ -49,17 +49,17 @@ public class CartController {
         Cart cart = cartService.findCartById(id);
         return new ResponseEntity<>(cart, HttpStatus.OK);
     }
-    @GetMapping("/user/{id}")
-    public ResponseEntity<Cart>getUserCart(@RequestHeader("Authorization") String jwt,
-                                               @PathVariable Integer id) throws Exception {
-        Cart cart = cartService.findCartByUserId(jwt);
+    @GetMapping("/user")
+    public ResponseEntity<Cart>getUserCart(@RequestHeader("Authorization") String jwt) throws Exception {
+        User user = userService.findUserByJwtToken(jwt);
+        Cart cart = cartService.findCartByUserId(user.getId());
         return new ResponseEntity<>(cart, HttpStatus.OK);
     }
 
     @PutMapping("/clear")
-    public ResponseEntity<Cart>clearCart(@RequestHeader("Authorization") String jwt,
-                                                    @PathVariable Integer id) throws Exception {
-        Cart cart = cartService.clearCart(jwt);
+    public ResponseEntity<Cart>clearCart(@RequestHeader("Authorization") String jwt) throws Exception {
+        User user = userService.findUserByJwtToken(jwt);
+        Cart cart = cartService.clearCart(user.getId());
         return new ResponseEntity<>(cart, HttpStatus.OK);
     }
 }

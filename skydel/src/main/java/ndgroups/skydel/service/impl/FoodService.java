@@ -24,7 +24,7 @@ public class FoodService implements IFoodService {
         food.setFoodCategory(category);
         food.setRestaurant(restaurant);
         food.setDescription(request.getDescription());
-        food.setImages(request.getImages());
+//        food.setImages(request.getImages());
         food.setName(request.getName());
         food.setPrice(request.getPrice());
         food.setIngredients(request.getIngredientsItems());
@@ -119,7 +119,7 @@ public class FoodService implements IFoodService {
         food.setDescription(updateFoodRequest.getDescription());
         food.setPrice(updateFoodRequest.getPrice());
         food.setFoodCategory(updateFoodRequest.getCategory());
-        food.setImages(updateFoodRequest.getImages());
+//        food.setImages(updateFoodRequest.getImages());
         food.setSeasonal(updateFoodRequest.isSeasonal());
         food.setVegetarian(updateFoodRequest.isVegetarian());
         food.setIngredients(updateFoodRequest.getIngredientsItems());

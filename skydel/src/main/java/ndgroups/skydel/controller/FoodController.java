@@ -1,8 +1,6 @@
 package ndgroups.skydel.controller;
 
 import ndgroups.skydel.model.Food;
-import ndgroups.skydel.model.Restaurant;
-import ndgroups.skydel.model.User;
 import ndgroups.skydel.request.CreateFoodRequest;
 import ndgroups.skydel.respnse.MessageResponse;
 import ndgroups.skydel.service.Interface.IFoodService;
@@ -48,11 +46,18 @@ public class FoodController {
         return new ResponseEntity<>(food, HttpStatus.OK);
     }
 
-
     @PutMapping("/edit/{id}")
     public ResponseEntity<Food> updateFood(@PathVariable Integer id, @RequestBody CreateFoodRequest req)
             throws Exception {
         Food food = foodService.updateFood(id, req);
         return new ResponseEntity<>(food, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/remove/{id}")
+    public ResponseEntity<MessageResponse> removeFood(@PathVariable Integer id) throws Exception {
+        foodService.deleteFood(id);
+        MessageResponse response = new MessageResponse();
+        response.setMessage("food successfully deleted");
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

@@ -40,7 +40,7 @@ public class Order {
 //    @JoinColumn(name = "address_id")
     private Address deliveryAddress;
     private int totalItem;
-    private int totalPrice;
+    private Long totalPrice;
 
 
 

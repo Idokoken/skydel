@@ -10,4 +10,4 @@ public class SkydelApplication {
 		SpringApplication.run(SkydelApplication.class, args);
 	}
 
-}
+} 

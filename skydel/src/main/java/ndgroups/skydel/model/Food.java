@@ -26,13 +26,20 @@ public class Food {
     private Category foodCategory;
     @Column(length = 1000)
     @ElementCollection
+    @CollectionTable(
+            name = "food_images",
+            joinColumns = @JoinColumn(name = "food_id")
+    )
+    @OrderColumn(name = "position")
     private List<String>images;
+//    @OneToMany(mappedBy = "food", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Image> images;
     private boolean  isAvailable;
     @ManyToOne
     private Restaurant restaurant;
     private boolean isVegetarian;
     private boolean isSeasonal;
-    @ManyToMany
+    @OneToMany(mappedBy = "food", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<IngredientsItem>ingredients = new ArrayList<>();
     private Date CreationDate;
 }

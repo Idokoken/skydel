@@ -1,5 +1,6 @@
 package ndgroups.skydel.service.impl;
 
+import ndgroups.skydel.dto.ImageDto;
 import ndgroups.skydel.dto.RestaurantDto;
 import ndgroups.skydel.model.Address;
 import ndgroups.skydel.model.Restaurant;
@@ -34,7 +35,7 @@ public class RestaurantService implements IRestaurantService {
         restaurant.setAddress(address);
         restaurant.setCuisineType(req.getCuisineType());
         restaurant.setContactInformation(req.getContactInformation());
-        restaurant.setImages(req.getImages());
+//        restaurant.setImages(req.getImages());
         restaurant.setOpeningHour(req.getOpeningHour());
         restaurant.setClosingHour(req.getClosingHour());
         restaurant.setRegistration(LocalDateTime.now());
@@ -58,7 +59,7 @@ public class RestaurantService implements IRestaurantService {
             restaurant.setCuisineType(updateRestaurant.getCuisineType());
         }
         if(restaurant.getImages()!= null){
-            restaurant.setImages(updateRestaurant.getImages());
+//            restaurant.setImages(updateRestaurant.getImages());
         }
         if(restaurant.getOpeningHour()!= null){
             restaurant.setOpeningHour(updateRestaurant.getOpeningHour());
@@ -113,8 +114,15 @@ public class RestaurantService implements IRestaurantService {
         RestaurantDto dto = new RestaurantDto();
         dto.setRestaurantId(restaurant.getId());
         dto.setDescription(restaurant.getDescription());
-        dto.setTitle(restaurant.getName());
+        dto.setName(restaurant.getName());
         dto.setImages(restaurant.getImages());
+        // 🔥 Map Images
+//        List<ImageDto> imageDtos = restaurant.getImages()
+//                .stream()
+//                .map(this::mapImageToDto)
+//                .toList();
+//
+//        dto.setImages(imageDtos);
 
         boolean isFavourite = false;
         List<RestaurantDto>favourites = user.getFavourites();
@@ -141,4 +149,11 @@ public class RestaurantService implements IRestaurantService {
         restaurant.setOpen(!restaurant.isOpen());
         return restaurantRepository.save(restaurant);
     }
+
+//    private ImageDto mapImageToDto(Image image) {
+//        ImageDto dto = new ImageDto();
+//        dto.setImageId(image.getId());
+//        dto.setImageUrl(image.getImageUrl());
+//        return dto;
+//    }
 }

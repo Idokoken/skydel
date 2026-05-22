@@ -8,7 +8,7 @@ import ndgroups.skydel.request.CreateFoodRequest;
 
 import java.util.List;
 
-public interface IFoodService {
+public interface  IFoodService {
     public Food createFood(CreateFoodRequest request, Category category, Restaurant restaurant);
     public void deleteFood(Integer foodId) throws Exception;
     public List<Food> getRestaurantFoods(Integer restaurantId, boolean isVegetarian, boolean isNonVeg,

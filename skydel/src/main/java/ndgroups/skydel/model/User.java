@@ -17,7 +17,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class User {
+public class  User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @Column(name = "user_id")
@@ -35,7 +35,12 @@ public class User {
     private List<Order> orders = new ArrayList<>();
 
    @ElementCollection
-    private List<RestaurantDto>favourites = new ArrayList<>();
+   @CollectionTable(
+           name = "user_favourites",
+           joinColumns = @JoinColumn(name = "user_id")
+   )
+   @OrderColumn(name = "position")
+   private List<RestaurantDto>favourites = new ArrayList<>();
    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
    private List<Address>addresses = new ArrayList<>();
 
