@@ -1,6 +1,5 @@
 package ndgroups.skydel.service.impl;
 
-import ndgroups.skydel.dto.ImageDto;
 import ndgroups.skydel.dto.RestaurantDto;
 import ndgroups.skydel.model.Address;
 import ndgroups.skydel.model.Restaurant;
