@@ -7,6 +7,6 @@ FROM amazoncorretto:17
 
 EXPOSE 8080
 
-COPY --from=build /target/Skydel-0.0.1-SNAPSHOT.jar Skydel.jar
+COPY --from=build /target/skydel-0.0.1-SNAPSHO Skydel.jar
 
 ENTRYPOINT ["java", "-jar", "Skydel.jar"]

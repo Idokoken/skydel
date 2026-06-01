@@ -115,7 +115,7 @@ public class RestaurantService implements IRestaurantService {
         dto.setDescription(restaurant.getDescription());
         dto.setName(restaurant.getName());
         dto.setImages(restaurant.getImages());
-        // 🔥 Map Images
+        // Map Images
 //        List<ImageDto> imageDtos = restaurant.getImages()
 //                .stream()
 //                .map(this::mapImageToDto)
