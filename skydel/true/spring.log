@@ -1,1 +1,6 @@
 2026-06-01T07:55:50.028+01:00  WARN 14356 --- [skydel] [HikariPool-3 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Thread starvation or clock leap detected (housekeeper delta=2d4h46m12s65ms220µs900ns).
+2026-06-01T10:03:02.148+01:00  INFO 14356 --- [skydel] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-01T10:03:04.540+01:00  INFO 14356 --- [skydel] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-06-01T10:03:05.528+01:00  INFO 14356 --- [skydel] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-01T10:03:07.113+01:00  INFO 14356 --- [skydel] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2026-06-01T10:03:10.376+01:00  INFO 14356 --- [skydel] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.

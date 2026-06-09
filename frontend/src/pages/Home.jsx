@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import styled from "styled-components";
 import MultiItemSliders from "../components/MultiItemSliders";
+import RestaurantCard from "../components/restaurant/RestaurantCard";
 
 const Wrapper = styled.div`
   // min-height: 60vh;
@@ -26,6 +27,8 @@ const Wrapper = styled.div`
 `;
 
 function Home() {
+  const retaurants = [1, 1, 1, 1, 1, 1, 1, 1];
+
   return (
     <>
       <Header />
@@ -42,6 +45,24 @@ function Home() {
           </div>
           <div className="cover absolute top-0 right-0 left-0"></div>
           <div className="fadout"></div>
+        </section>
+
+        <section className="topmeal-section p-10 lg:py-10 lg:px-20">
+          <p className="text-2xl text-gray-400 font-semibold py-3 pb-10">
+            Top Meals
+          </p>
+          <MultiItemSliders />
+        </section>
+
+        <section className="px-5 lg:px-20 pt-20">
+          <h1 className="text-2xl text-gray-400 font-semibold pb-8">
+            Order from our handpicked Favourites
+          </h1>
+          <div className="flex flex-wrap justify-around items-center gap-5">
+            {retaurants.map((item, i) => (
+              <RestaurantCard key={i} />
+            ))}
+          </div>
         </section>
       </Wrapper>
 

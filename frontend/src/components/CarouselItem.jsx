@@ -4,7 +4,8 @@ function CarouselItem({ image, title }) {
   return (
     <div className="flex flex-col justify-center items-center">
       <img
-        className="w-[10rem] h-[10rem] lg:h-[14rem] lg:w-[14rem] rounded-full object-cover object-center"
+        className="w-[10rem] h-[10rem] lg:h-[14rem] lg:w-[14rem] rounded-full object-cover object-center
+         border-2"
         src={image}
         alt="top meal"
       />

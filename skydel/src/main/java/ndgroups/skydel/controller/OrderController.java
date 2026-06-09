@@ -64,9 +64,4 @@ public class OrderController {
         return new ResponseEntity<>(orders, HttpStatus.OK);
     }
 
-
-    @GetMapping("/test")
-    public String getMessage(){
-        return "hello testing";
-    }
 }

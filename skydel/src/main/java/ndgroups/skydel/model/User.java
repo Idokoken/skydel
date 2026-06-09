@@ -26,7 +26,7 @@ public class  User {
     private String email;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
-    private USER_ROLE role = USER_ROLE.ROLE_CUSTOMER  ;
+    private USER_ROLE role = USER_ROLE.ROLE_CUSTOMER;
     @JsonIgnore
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Cart cart;

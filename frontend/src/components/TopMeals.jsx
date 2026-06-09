@@ -1,4 +1,4 @@
-const topMeals = [
+export const topMeals = [
   {
     image:
       "https://res.cloudinary.com/dmb6bzbfi/image/upload/v1733369870/pillars/ektq1enls3jhawc7n7bu.jpg",
