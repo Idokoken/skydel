@@ -31,7 +31,7 @@ function Home() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
 
       <Wrapper>
         <section className="banner z-50 relative flex flex-col justify-center items-center">

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
@@ -16,6 +16,8 @@ import PlaceOrder from "./components/PlaceOrder";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { darkTheme } from "./Theme/DarkTheme";
 import RestaurantDetails from "./components/restaurant/RestaurantDetails";
+import Profile from "./components/profile/Profile";
+import CustomerRoute from "./components/routers/CustomerRoute";
 
 // import ScrollToTop from './ScrollToTop';
 
@@ -23,9 +25,9 @@ function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
-      <Router>
-        {/* <ScrollToTop /> */}
-        <Routes>
+
+      {/* <ScrollToTop /> */}
+      {/* <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact-us" element={<Contact />} />
           <Route path="/about-us" element={<About />} />
@@ -42,13 +44,15 @@ function App() {
           <Route path="/product/:id" element={<SingleProduct />} />
 
           <Route path="/restaurant" element={<RestaurantDetails />} />
+          <Route path="/my-profile" element={<Profile />} />
 
           <Route path="/signin" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
           <Route path="*" element={<ErrorPage />} />
-        </Routes>
-      </Router>
+        </Routes> */}
+
+      <CustomerRoute />
     </ThemeProvider>
   );
 }

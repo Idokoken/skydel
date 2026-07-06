@@ -63,10 +63,10 @@ public class AuthController {
         cartRepository.save(cart);
 
         // Send Notification email after successful account creation
-        emailService.sendAccountCreationNotificationEmail(
-                saveUser.getEmail(),
-                user.getFullName()
-        );
+//        emailService.sendAccountCreationNotificationEmail(
+//                saveUser.getEmail(),
+//                user.getFullName()
+//        );
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(user.getEmail(),
                 user.getPassword());
@@ -113,4 +113,6 @@ public class AuthController {
         return new UsernamePasswordAuthenticationToken(userDetails, null,
                 userDetails.getAuthorities());
     }
+
+
 }
