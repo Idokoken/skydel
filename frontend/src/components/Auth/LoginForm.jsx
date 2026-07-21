@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { Typography, TextField, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { ShopContext } from "../../context/ShopContext";
+import { BASE_URL } from "./../../config/API";
 
 const initialValues = { email: "", password: "" };
 
@@ -16,6 +17,14 @@ function LoginForm() {
     console.log(values);
     loginUser({ userData: values, navigate });
   };
+
+  // const user = localStorage.getItem("jwt");
+  // useEffect(() => {
+  //   if (user) {
+  //     navigate(-1);
+  //   }
+  // }, [user, navigate]);
+
   return (
     <div>
       <Typography variant="h5" className="text-center">
@@ -51,7 +60,7 @@ function LoginForm() {
         </Form>
       </Formik>
       <Typography variant="body2" align="center" sx={{ mt: 3 }}>
-        Don't have an
+        Don't have an Acccount
         <Button size="small" onClick={() => navigate("/account/register")}>
           Register
         </Button>

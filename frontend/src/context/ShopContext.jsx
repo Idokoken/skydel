@@ -17,7 +17,7 @@ import {
 import { Data } from "../config/data";
 import axios from "axios";
 import { api, BASE_URL } from "../config/API";
-import { reducer } from "./Reducer";
+import { reducer, initialState } from "./Reducer";
 
 // export const user = localStorage.getItem("user");
 // const token = localStorage.getItem("token");
@@ -25,7 +25,7 @@ import { reducer } from "./Reducer";
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
-  const [state, dispatch] = useReducer(reducer);
+  const [state, dispatch] = useReducer(reducer, initialState);
   const currency = "$";
   const delivery_fee = 10;
 
@@ -40,7 +40,7 @@ const ShopContextProvider = (props) => {
   //   };
 
   //   ------Register User-----
-  const registerUser = (reqData) => async (dispatch) => {
+  const registerUser = async (reqData) => {
     dispatch({ type: REGISTER_REQUEST });
     try {
       const { data } = await axios.post(
@@ -64,7 +64,7 @@ const ShopContextProvider = (props) => {
     }
   };
   //   -----Login User ----
-  const loginUser = (reqData) => async (dispatch) => {
+  const loginUser = async (reqData) => {
     dispatch({ type: LOGIN_REQUEST });
     try {
       const { data } = await axios.post(
@@ -89,15 +89,18 @@ const ShopContextProvider = (props) => {
   };
 
   //   ----- Get User Profile -----
-  const getUser = (jwt) => async (dispatch) => {
+  const getUser = async (jwt) => {
     dispatch({ type: GET_USER_REQUEST });
     try {
-      const { data } = await API.get(`/auth/signin`, {
+      const { data } = await api.get(`/api/users/profile`, {
         headers: { Authorization: `Bearer ${jwt}` },
       });
+      // const { data } = await axios.get(`${BASE_URL}/api/users/profile`, {
+      //   headers: { Authorization: `Bearer ${jwt}` },
+      // });
 
       dispatch({ type: GET_USER_SUCCESS, payload: data });
-      console.log("user profile", data);
+      // console.log("user profile", data);
     } catch (error) {
       dispatch({
         type: GET_USER_FAILURE,
@@ -108,35 +111,33 @@ const ShopContextProvider = (props) => {
   };
 
   //   ----- Add to Favorite ----
-  const addToFavorite =
-    ({ jwt, restaurntId }) =>
-    async (dispatch) => {
-      dispatch({ type: ADD_TO_FAVORITE_REQUEST });
-      try {
-        const { data } = await api.put(
-          `${BASE_URL}/api/restaurants/${restaurntId}/add-favorites`,
-          {},
-          {
-            headers: { Authorization: `Bearer ${jwt}` },
-          },
-        );
-        dispatch({ type: ADD_TO_FAVORITE_SUCCESS, payload: data });
-        console.log("add to favorite", data);
-      } catch (error) {
-        dispatch({
-          type: ADD_TO_FAVORITE_FAILURE,
-          payload: error,
-        });
-        console.log(error);
-      }
-    };
+  const addToFavorite = async ({ jwt, restaurntId }) => {
+    dispatch({ type: ADD_TO_FAVORITE_REQUEST });
+    try {
+      const { data } = await api.put(
+        `${BASE_URL}/api/restaurants/${restaurntId}/add-favorites`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${jwt}` },
+        },
+      );
+      dispatch({ type: ADD_TO_FAVORITE_SUCCESS, payload: data });
+      console.log("add to favorite", data);
+    } catch (error) {
+      dispatch({
+        type: ADD_TO_FAVORITE_FAILURE,
+        payload: error,
+      });
+      console.log(error);
+    }
+  };
 
   // -----Logout User-----
-  const logoutUser = () => (dispatch) => {
+  const logoutUser = () => {
     dispatch({ type: LOGOUT });
     // localStorage.removeItem("jwt");
     localStorage.clear();
-    console.log("usser logged out");
+    console.log("user logged out");
   };
 
   const value = {
@@ -146,7 +147,7 @@ const ShopContextProvider = (props) => {
     delivery_fee,
     registerUser,
     loginUser,
-    loginUser,
+    logoutUser,
     getUser,
     addToFavorite,
   };

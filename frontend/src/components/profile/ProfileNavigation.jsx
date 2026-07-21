@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import HomeIcon from "@mui/icons-material/Home";
@@ -9,6 +9,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { AddReaction } from "@mui/icons-material";
 import { Divider, Drawer, useMediaQuery } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { ShopContext } from "../../context/ShopContext";
 
 const menu = [
   { title: "Orders", icon: <ShoppingBagIcon /> },
@@ -23,8 +24,15 @@ const menu = [
 function ProfileNavigation({ open, handleClose }) {
   const isSmallScreen = useMediaQuery("(max-width: 900)");
   const navigate = useNavigate();
+  const { logoutUser } = useContext(ShopContext);
+
   const handleNavigate = (item) => {
-    navigate(`/my-profile/${item.title.toLowerCase()}`);
+    if (item.title === "Logout") {
+      logoutUser();
+      navigate("/");
+    } else {
+      navigate(`/my-profile/${item.title.toLowerCase()}`);
+    }
   };
 
   return (

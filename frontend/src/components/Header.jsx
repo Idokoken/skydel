@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import brand from "../assets/brand.png";
 import { Avatar, Badge, IconButton, Box } from "@mui/material";
@@ -6,6 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import styled from "styled-components";
 import { Person } from "@mui/icons-material";
+import { ShopContext } from "../context/ShopContext";
 
 const Wrapper = styled.div`
   font-family: var(--primary-font);
@@ -18,6 +19,15 @@ const Wrapper = styled.div`
 
 function Header() {
   const navigate = useNavigate();
+  const { user } = useContext(ShopContext);
+
+  const handeleAvatarClick = () => {
+    if (user?.role === "ROLE_CUSTOMER") {
+      navigate("/my-profile");
+    } else {
+      navigate("/admin/restaurant");
+    }
+  };
 
   return (
     <Wrapper>
@@ -43,8 +53,13 @@ function Header() {
                 </IconButton>
               </div>
               <div className="">
-                {false ? (
-                  <Avatar sx={{ bgcolor: "white", color: "green" }}>C</Avatar>
+                {user ? (
+                  <Avatar
+                    onClick={handeleAvatarClick}
+                    sx={{ bgcolor: "white", color: "green" }}
+                  >
+                    {user?.fullName[0].toUpperCase()}
+                  </Avatar>
                 ) : (
                   <IconButton onClick={() => navigate("/account/login")}>
                     <Person />

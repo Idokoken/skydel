@@ -15,7 +15,7 @@ import {
 } from "./action";
 import { isPresentInFavorite } from "../config/Logic";
 
-const initialState = {
+export const initialState = {
   user: null,
   isLoading: false,
   error: null,
@@ -26,19 +26,26 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case REISTER_REQUEST:
+    case REGISTER_REQUEST:
     case LOGIN_REQUEST:
     case GET_USER_REQUEST:
     case ADD_TO_FAVORITE_REQUEST:
       return { ...state, isLoading: true, error: null, success: null };
 
-    case REISTER_SUCCESS:
+    case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
       return {
         ...state,
         isLoading: false,
         jwt: action.payload,
         success: "Registration successful",
+      };
+
+    case GET_USER_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        user: action.payload,
       };
 
     case ADD_TO_FAVORITE_SUCCESS:
@@ -51,7 +58,10 @@ export const reducer = (state = initialState, action) => {
           : [action.payload, ...state.favorites],
       };
 
-    case REISTER_FAILURE:
+    case LOGOUT:
+      return initialState;
+
+    case REGISTER_FAILURE:
     case LOGIN_FAILURE:
     case GET_USER_FAILURE:
     case ADD_TO_FAVORITE_FAILURE:

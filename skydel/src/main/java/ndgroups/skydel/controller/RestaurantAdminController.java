@@ -50,7 +50,7 @@ public class RestaurantAdminController {
     }
 
     @GetMapping("/user")
-    public ResponseEntity<Restaurant> getRestaurantById(@RequestHeader("Authorization") String jwt)
+    public ResponseEntity<Restaurant> getRestaurantUserById(@RequestHeader("Authorization") String jwt)
              throws Exception {
         User user = userService.findUserByJwtToken(jwt);
         Restaurant restaurant = restaurantService.findRestaurantById(user.getId());

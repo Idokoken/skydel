@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useEffect, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
@@ -18,10 +18,21 @@ import { darkTheme } from "./Theme/DarkTheme";
 import RestaurantDetails from "./components/restaurant/RestaurantDetails";
 import Profile from "./components/profile/Profile";
 import CustomerRoute from "./components/routers/CustomerRoute";
+import { ShopContext } from "./context/ShopContext";
+import { BASE_URL, api } from "./config/API";
 
 // import ScrollToTop from './ScrollToTop';
 
 function App() {
+  const { getUser, jwt } = useContext(ShopContext);
+  const jwtFromStorage = localStorage.getItem("jwt");
+  useEffect(() => {
+    getUser(jwt || jwtFromStorage);
+    // console.log(jwt);
+  }, [jwt]);
+
+  // console.log(BASE_URL);
+
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
